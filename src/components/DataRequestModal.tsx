@@ -17,6 +17,7 @@ interface FormData {
   taskType: string;
   numberOfDataPoints: string;
   urgency: string;
+  language: string;
 }
 
 const taskTypes = [
@@ -31,7 +32,8 @@ export function DataRequestModal({ open, onOpenChange, onSubmit }: DataRequestMo
     kindOfData: "",
     taskType: "",
     numberOfDataPoints: "",
-    urgency: ""
+    urgency: "",
+    language: ""
   });
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
@@ -52,6 +54,9 @@ export function DataRequestModal({ open, onOpenChange, onSubmit }: DataRequestMo
     }
     if (!formData.urgency.trim()) {
       newErrors.urgency = "Urgency is required";
+    }
+    if (!formData.language.trim()) {
+      newErrors.language = "Language is required";
     }
 
     setErrors(newErrors);
@@ -157,6 +162,30 @@ export function DataRequestModal({ open, onOpenChange, onSubmit }: DataRequestMo
             />
             {errors.urgency && (
               <p className="text-sm text-destructive">{errors.urgency}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="language" className="text-sm font-medium">
+              Language of Data
+            </Label>
+            <Select 
+              value={formData.language} 
+              onValueChange={(value) => updateField("language", value)}
+            >
+              <SelectTrigger className={`transition-smooth ${errors.language ? 'border-destructive' : ''}`}>
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent className="bg-popover border shadow-elegant">
+                {["English", "Spanish", "French", "German", "Mandarin", "Japanese", "Korean", "Arabic", "Hindi", "Portuguese"].map((language) => (
+                  <SelectItem key={language} value={language} className="focus:bg-accent">
+                    {language}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.language && (
+              <p className="text-sm text-destructive">{errors.language}</p>
             )}
           </div>
 

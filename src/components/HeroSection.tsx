@@ -1,89 +1,74 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Brain, Database, Users, Zap } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 interface HeroSectionProps {
-  onGetStarted: () => void;
+  onExploreExperts: () => void;
 }
 
-export function HeroSection({ onGetStarted }: HeroSectionProps) {
-  const features = [
-    {
-      icon: Brain,
-      title: "Expert AI Trainers",
-      description: "Access vetted professionals specializing in LLM training data"
-    },
-    {
-      icon: Database,
-      title: "Custom Data Creation",
-      description: "Generate exactly the data you need for your specific use case"
-    },
-    {
-      icon: Users,
-      title: "Scalable Teams",
-      description: "From small projects to enterprise-scale data generation"
-    },
-    {
-      icon: Zap,
-      title: "Fast Delivery",
-      description: "Get high-quality data delivered on your timeline"
-    }
-  ];
-
+export function HeroSection({ onExploreExperts }: HeroSectionProps) {
   return (
-    <div className="min-h-screen bg-gradient-hero relative overflow-hidden">
+    <section className="relative bg-gradient-hero text-white py-24 overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      <div className="absolute top-20 right-20 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
-
-      <div className="relative container mx-auto px-6 pt-24 pb-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Premium Data for 
-            <span className="block bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
-              Next-Gen LLMs
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="absolute top-20 right-20 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+      
+      <div className="relative container mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            Winning{" "}
+            <span className="relative">
+              <span className="bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+                LLM training
+              </span>
+              <div className="absolute -top-2 -right-8 w-16 h-16 bg-white/20 rounded-full blur-xl"></div>
+            </span>
+            {" "}at{" "}
+            <span className="relative">
+              all touchpoints
+              <div className="absolute -bottom-2 -left-8 w-20 h-20 bg-white/20 rounded-full blur-xl"></div>
             </span>
           </h1>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Connect with expert data creators who understand your LLM training needs. 
-            Get custom datasets tailored to your specific requirements with enterprise-grade quality.
+          
+          <p className="text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed max-w-3xl mx-auto">
+            Crafting premium training data with expert human intelligence, 
+            cutting-edge technology and the promise of quality.
           </p>
-          <Button 
-            onClick={onGetStarted}
-            size="lg"
-            className="bg-white text-primary hover:bg-blue-50 hover:shadow-glow transition-smooth text-lg px-8 py-6 font-semibold"
-          >
-            Get Started Today
-          </Button>
-        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
-          {features.map((feature, index) => (
-            <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 p-6 hover:bg-white/15 transition-smooth">
-              <feature.icon className="w-8 h-8 text-blue-200 mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-blue-100 text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </Card>
-          ))}
-        </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <Button 
+              onClick={onExploreExperts}
+              size="lg"
+              className="bg-white text-primary hover:bg-blue-50 hover:shadow-glow transition-smooth text-lg px-8 py-6 font-semibold"
+            >
+              Explore Experts
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            
+            <Button 
+              variant="outline"
+              size="lg"
+              className="border-white/30 text-white hover:bg-white/10 transition-smooth text-lg px-8 py-6"
+            >
+              <Play className="mr-2 w-5 h-5" />
+              Watch Demo
+            </Button>
+          </div>
 
-        <div className="mt-20 text-center">
-          <p className="text-blue-200 text-sm">
-            Trusted by leading AI companies and research institutions
-          </p>
-          <div className="flex justify-center items-center space-x-8 mt-6 opacity-60">
-            <div className="bg-white/20 px-4 py-2 rounded text-white font-medium">OpenAI</div>
-            <div className="bg-white/20 px-4 py-2 rounded text-white font-medium">Anthropic</div>
-            <div className="bg-white/20 px-4 py-2 rounded text-white font-medium">Cohere</div>
-            <div className="bg-white/20 px-4 py-2 rounded text-white font-medium">Scale AI</div>
+          {/* Trust indicators */}
+          <div className="text-blue-200 text-sm mb-8">
+            The AI-fueled data partner of choice
+          </div>
+          
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
+            {["OpenAI", "Anthropic", "Google", "Microsoft", "Meta", "Cohere"].map((company) => (
+              <div key={company} className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-lg text-white font-medium">
+                {company}
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
